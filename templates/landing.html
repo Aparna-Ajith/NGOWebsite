@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<style>
+
+    body {
+        font-family: "Roboto";
+        font-size: "14px";
+        background-size: 200% 100% !important;
+        animation: move 10s ease infinite;
+        transform: translate3d(0, 0, 0);
+        background: linear-gradient(45deg, #ececec 10%, #fb54aa 90%);
+        padding : 30px;
+        height: 100vh
+    }
+    
+    .user {
+        width: 90%;
+        max-width: 340px;
+        margin: 10vh auto;
+    }
+    
+    .user__header {
+        text-align: center;
+        opacity: 0;
+        transform: translate3d(0, 500px, 0);
+        animation: arrive 500ms ease-in-out 0.7s forwards;
+    }
+    
+    
+    .form {
+        margin-top: 40px;
+        border-radius: 6px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate3d(0, 500px, 0);
+        animation: arrive 500ms ease-in-out 0.9s forwards;
+    }
+    
+    .form--no {
+        animation: NO 1s ease-in-out;
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    
+    
+    
+    .user__title {
+        font-size: 20px; /* Adjust the font size as needed */
+        margin-bottom: 20px; /* Add margin at the bottom to create space */
+        font-weight: 500;
+        color: white;
+    }
+    
+    .form__input {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        font-family: "Roboto";
+        border: 0;
+        outline: 0;
+        transition: 0.3s;
+        margin-bottom: 20px; /* Add margin at the bottom to create space */
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        font-family: "Roboto";
+        outline: 0;
+        border: 0;
+        color: white;
+        background: #ABA194;
+        transition: 0.3s;
+        margin-top: 50px; /* Add margin at the top to create space */
+    }
+    
+    @keyframes NO {
+      from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    
+      10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+      }
+    
+      20%, 40%, 60%, 80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+      }
+    }
+    
+    @keyframes arrive {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 50px, 0);
+        }
+        
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    
+    @keyframes move {
+        0% {
+            background-position: 0 0
+        }
+    
+        50% {
+            background-position: 100% 0
+        }
+    
+        100% {
+            background-position: 0 0
+        }
+    }
+    
+    </style>
+<html>
+    {% extends "base.html" %}
+
+    {% block title %}Donate{% endblock %}
+<head>
+ 
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+{% block content %}
+<body>
+    <div class="user">
+        <header class="user__header">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+            <h1 class="user__title">Donate!</h1>
+    </header>
+    </div>
+    <section>
+        <div class="product">
+            <div class="description">
+                <h3>{{ product.name }}</h3>
+                <hr />
+                {% for price in prices %}
+ 
+                <div class = "btn">
+                    <h5>${{ price.get_display_price }}</h5>
+                    <form action="{% url 'create-checkout-session' price.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Checkout</button>
+                    </form>
+                </div>
+ 
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+{% endblock %}
+</html>

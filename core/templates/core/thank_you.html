@@ -1,0 +1,145 @@
+
+<style>
+
+    body {
+        font-family: "Roboto";
+        font-size: "14px";
+        background-size: 200% 100% !important;
+        animation: move 10s ease infinite;
+        transform: translate3d(0, 0, 0);
+        background: linear-gradient(45deg, #ececec 10%, #fb54aa 90%);
+        padding : 30px;
+        height: 100vh
+    }
+    
+    .user {
+        width: 90%;
+        max-width: 340px;
+        margin: 10vh auto;
+    }
+    
+    .user__header {
+        text-align: center;
+        opacity: 0;
+        transform: translate3d(0, 500px, 0);
+        animation: arrive 500ms ease-in-out 0.7s forwards;
+    }
+    
+    
+    .form {
+        margin-top: 40px;
+        border-radius: 6px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate3d(0, 500px, 0);
+        animation: arrive 500ms ease-in-out 0.9s forwards;
+    }
+    
+    .form--no {
+        animation: NO 1s ease-in-out;
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    
+    
+    
+    .user__title {
+        font-size: 20px; /* Adjust the font size as needed */
+        margin-bottom: 20px; /* Add margin at the bottom to create space */
+        font-weight: 500;
+        color: white;
+    }
+    
+    .form__input {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        font-family: "Roboto";
+        border: 0;
+        outline: 0;
+        transition: 0.3s;
+        margin-bottom: 20px; /* Add margin at the bottom to create space */
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        font-family: "Roboto";
+        outline: 0;
+        border: 0;
+        color: white;
+        background: #ABA194;
+        transition: 0.3s;
+        margin-top: 20px; /* Add margin at the top to create space */
+    }
+    
+    @keyframes NO {
+      from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    
+      10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+      }
+    
+      20%, 40%, 60%, 80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+      }
+    }
+    
+    @keyframes arrive {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 50px, 0);
+        }
+        
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    
+    @keyframes move {
+        0% {
+            background-position: 0 0
+        }
+    
+        50% {
+            background-position: 100% 0
+        }
+    
+        100% {
+            background-position: 0 0
+        }
+    }
+    
+    </style>
+    
+    {% extends 'core/base.html' %}
+    
+    {% block title %}Home{% endblock %}
+    {% load static %}
+    
+    {% block content %}
+    
+                <div class="user">
+                    <header class="user__header">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+                        <h1 class="user__title">Subscribe!</h1>
+                        <div class="form__input">
+                            <div class="w-full p-6 ">
+                                <h1 class="inline-block px-8 py-4 rounded-xl bg-green-700 text-center text-white hover:bg-green-500 m-6">Hi, {{email}}, <br>Thank you for subscribing to our newsletter</h1>
+                                <p class="w-full p-6 m-6 bg-blue-900 rounded-3xl text-white">We're excited to have you on board.&#128521;&#128521;&#128521;&#128521;</p>
+                            </div>
+                        </div>
+
+
+            </div>
+
+    
+    
+    {% endblock %}

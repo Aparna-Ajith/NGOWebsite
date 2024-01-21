@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+footer {
+  margin-top: auto;
+  min-width: 100%;
+  width: initial;
+  height: 60px; /* Adjust as needed */
+  background-color: #350b33; /* Adjust as needed */
+  color: #350b33;
+  padding: 0px 0px;
+  text-align: center;
+  z-index: 999;
+}

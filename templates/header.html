@@ -1,0 +1,79 @@
+      {% load static %}  
+      <!--     Navbar        -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="z-index: 99">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <img src="{% static 'assets/logo.jpeg' %}" href="{% url 'home' %}" alt="logo" width="70" height="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                  <!-- about us -->
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle"href="{% url 'about' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ABOUT US
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
+
+                      </ul>
+                    </li>
+
+                <!-- our works -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'work' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    OUR WORK
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item"  href="{% url 'education' %}">Education</a></li>
+                    <li><a class="dropdown-item" href="{% url 'health' %}">Health</a></li>
+                    <li><a class="dropdown-item"  href="{% url 'empowerment' %}">Women Empowerment</a></li>
+
+                  </ul>
+                </li>
+
+                <!-- contact us -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'contact' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    CONTACT US
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item"  href="{% url 'contact' %}">Get In Touch</a></li>
+                    <li><a class="dropdown-item" href="{% url 'faq' %}">FAQs</a></li>
+                  </ul>
+                </li>
+
+                <!-- contact us -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'faq' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    FAQ
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'faq' %}">FAQs</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+            {% if user.is_authenticated %}
+            Hi {{ user.username }}!
+             <!-- DONATE NOW - BUTTON -->
+             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+              
+                 
+              <button class="btn btn-danger" type="button" ><i class="fa-solid fa-heart fa-beat"></i> <a href = "{% url 'landing'%}">  DONATE NOW </a></button>
+            </div>
+            {% else %}
+            <!-- DONATE NOW - BUTTON -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+              <button type="button" class="btn btn-danger"><a href="{% url 'login' %}">Log In</a ></button>
+                 
+              <button class="btn btn-danger" type="button" href="{% url 'signup' %}"><i class="fa-solid fa-heart fa-beat"></i> register</button>
+            </div>
+            {% endif %}
+          </div>
+        </nav>
